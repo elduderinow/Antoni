@@ -3,6 +3,7 @@ import {connect, styled} from "frontity";
 import Link from "../link";
 import List from "../list";
 import {Grid, Row, Col} from 'react-flexbox-grid';
+import anneLogo from '../../images/anne.svg';
 
 
 /**
@@ -52,18 +53,13 @@ const Anne = ({state, actions, libraries}) => {
 
     // Load the post, but only if the data is ready.
     return data.isReady ? (
-        <Grid fluid>
+        <Grid className={"mobile-wrap"} fluid>
             <Row>
-                <Col xs={12} sm={6}>
+                <Col className={"no-padding"} xs={12}>
                     <Wrapper>
-                        <h1 className={"intro-title"}>ANNE PAGE</h1>
-                        {/*<Image src={post.acf.intro_image}/>*/}
-                    </Wrapper>
-                </Col>
-                <Col xs={12} sm={6}>
-                    <Wrapper>
-                        <h1>Onze services</h1>
-                        {/*<Image src={post.acf.intro_image}/>*/}
+                        <Image src={anneLogo}/>
+                        <h1 className={"intro-title"}>Binnenkort Online</h1>
+                        <div><a href={"https://www.instagram.com/goovaertsanne/"}>Instagram</a> | <a href={"mailto:ga@annegoovaerts.be"}>ga@annegoovaerts.be</a></div>
                     </Wrapper>
                 </Col>
             </Row>
@@ -80,8 +76,37 @@ const Anne = ({state, actions, libraries}) => {
 export default connect(Anne);
 
 const Wrapper = styled.div`
-  background-color: red;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  img {
+    margin: 0 auto;
+    width: 400px;
+  }
+
+  h1 {
+    margin: 4rem 0 2rem 0;
+    text-align: center;
+    font-weight: 400;
+    color: gray;
+    font-size: 2rem;
+  }
+
+  div {
+    color: gray;
+
+    a {
+      color: gray;
+
+      &:hover {
+        color: #a15717;
+      }
+    }
+  }
+
 `;
 
 const Image = styled.img`
