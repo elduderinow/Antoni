@@ -59,7 +59,8 @@ const Anne = ({state, actions, libraries}) => {
                     <Wrapper>
                         <Image src={anneLogo}/>
                         <h1 className={"intro-title"}>Binnenkort Online</h1>
-                        <div><a href={"https://www.instagram.com/goovaertsanne/"}>Instagram</a> | <a href={"mailto:ga@annegoovaerts.be"}>ga@annegoovaerts.be</a></div>
+                        <div><a href={"https://www.instagram.com/goovaertsanne/"}>Instagram</a> | <a
+                            href={"mailto:ga@annegoovaerts.be"}>ga@annegoovaerts.be</a></div>
                     </Wrapper>
                 </Col>
             </Row>
@@ -84,7 +85,7 @@ const Wrapper = styled.div`
 
   img {
     margin: 0 auto;
-    width: 400px;
+    width: 80%;
   }
 
   h1 {
