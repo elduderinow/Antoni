@@ -14,24 +14,12 @@ const settings = {
         "theme": {
           "menu": [
             [
-              "Home",
-              "/"
+              "Toni Taloni",
+              "/toni-taloni"
             ],
             [
-              "Nature",
-              "/category/nature/"
-            ],
-            [
-              "Travel",
-              "/category/travel/"
-            ],
-            [
-              "Japan",
-              "/tag/japan/"
-            ],
-            [
-              "About Us",
-              "/about-us/"
+              "Anne Goovaerts",
+              "/anne-goovaerts"
             ]
           ],
           "featured": {
@@ -45,7 +33,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://test.frontity.org"
+          "url": "https://antoni.yarrut.com"
         }
       }
     },

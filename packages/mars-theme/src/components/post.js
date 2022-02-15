@@ -1,8 +1,11 @@
-import { useEffect } from "react";
-import { connect, styled } from "frontity";
+import {useEffect} from "react";
+import {connect, styled} from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
+import {Grid, Row, Col} from 'react-flexbox-grid';
+import Anne from "./Pages/Anne";
+
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -23,75 +26,102 @@ import FeaturedMedia from "./featured-media";
  *
  * @returns The {@link Post} element rendered.
  */
-const Post = ({ state, actions, libraries }) => {
-  // Get information about the current URL.
-  const data = state.source.get(state.router.link);
-  // Get the data of the post.
-  const post = state.source[data.type][data.id];
-  // Get the data of the author.
-  const author = state.source.author[post.author];
-  // Get a human readable date.
-  const date = new Date(post.date);
+const Post = ({state, actions, libraries}) => {
+    // Get information about the current URL.
+    const data = state.source.get(state.router.link);
+    // Get the data of the post.
+    const post = state.source[data.type][data.id];
+    // Get the data of the author.
+    const author = state.source.author[post.author];
+    // Get a human readable date.
+    const date = new Date(post.date);
 
-  // Get the html2react component.
-  const Html2React = libraries.html2react.Component;
+    // Get the html2react component.
+    const Html2React = libraries.html2react.Component;
 
-  /**
-   * Once the post has loaded in the DOM, prefetch both the
-   * home posts and the list component so if the user visits
-   * the home page, everything is ready and it loads instantly.
-   */
-  useEffect(() => {
-    actions.source.fetch("/");
-    List.preload();
-  }, [actions.source]);
+    console.log(post.acf.intro_image)
+    console.log(data.route)
 
-  // Load the post, but only if the data is ready.
-  return data.isReady ? (
-    <Container>
-      <div>
-        <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+    /**
+     * Once the post has loaded in the DOM, prefetch both the
+     * home posts and the list component so if the user visits
+     * the home page, everything is ready and it loads instantly.
+     */
+    useEffect(() => {
+        actions.source.fetch("/");
+        List.preload();
+    }, [actions.source]);
 
-        {/* Hide author and date on pages */}
-        {!data.isPage && (
-          <div>
-            {author && (
-              <StyledLink link={author.link}>
-                <Author>
-                  By <b>{author.name}</b>
-                </Author>
-              </StyledLink>
+    // Load the post, but only if the data is ready.
+    return data.isReady ? (
+        <Grid fluid>
+            <Row>
+                <Col xs={12} sm={6}>
+                    <Wrapper>
+                        <h1 className={"intro-title"}>Onze services</h1>
+                        <Image src={post.acf.intro_image}/>
+                    </Wrapper>
+                </Col>
+                <Col xs={12} sm={6}>
+                    <Wrapper>
+                        <h1>Onze services</h1>
+                        <Image src={post.acf.intro_image}/>
+                    </Wrapper>
+                </Col>
+            </Row>
+
+            <div>
+                {/*<Title dangerouslySetInnerHTML={{__html: post.title.rendered}}/>*/}
+
+                {/*/!* Hide author and date on pages *!/*/}
+                {/*{!data.isPage && (*/}
+                {/*    <div>*/}
+                {/*        {author && (*/}
+                {/*            <StyledLink link={author.link}>*/}
+                {/*                <Author>*/}
+                {/*                    By <b>{author.name}</b>*/}
+                {/*                </Author>*/}
+                {/*            </StyledLink>*/}
+                {/*        )}*/}
+                {/*        <DateWrapper>*/}
+                {/*            {" "}*/}
+                {/*            on <b>{date.toDateString()}</b>*/}
+                {/*        </DateWrapper>*/}
+                {/*    </div>*/}
+                {/*)}*/}
+            </div>
+
+            {/*/!* Look at the settings to see if we should include the featured image *!/*/}
+            {/*{state.theme.featured.showOnPost && (*/}
+            {/*    <FeaturedMedia id={post.featured_media}/>*/}
+            {/*)}*/}
+
+            {data.isAttachment ? (
+                // If the post is an attachment, just render the description property,
+                // which already contains the thumbnail.
+                <div dangerouslySetInnerHTML={{__html: post.description.rendered}}/>
+            ) : (
+                // Render the content using the Html2React component so the HTML is
+                // processed by the processors we included in the
+                // libraries.html2react.processors array.
+                <Content>
+                    <Html2React html={post.content.rendered}/>
+                </Content>
             )}
-            <DateWrapper>
-              {" "}
-              on <b>{date.toDateString()}</b>
-            </DateWrapper>
-          </div>
-        )}
-      </div>
-
-      {/* Look at the settings to see if we should include the featured image */}
-      {state.theme.featured.showOnPost && (
-        <FeaturedMedia id={post.featured_media} />
-      )}
-
-      {data.isAttachment ? (
-        // If the post is an attachment, just render the description property,
-        // which already contains the thumbnail.
-        <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
-      ) : (
-        // Render the content using the Html2React component so the HTML is
-        // processed by the processors we included in the
-        // libraries.html2react.processors array.
-        <Content>
-          <Html2React html={post.content.rendered} />
-        </Content>
-      )}
-    </Container>
-  ) : null;
+        </Grid>
+    ) : null;
 };
 
 export default connect(Post);
+
+const Wrapper = styled.div`
+  background-color: red;
+  padding: 2rem;
+`;
+
+const Image = styled.img`
+  width: 100%;
+`;
 
 const Container = styled.div`
   width: 800px;
