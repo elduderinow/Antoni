@@ -1,13 +1,11 @@
 import {connect, styled} from "frontity";
-import Link from "./link";
-import Nav from "./nav";
-import MobileMenu from "./menu";
 import {Col, Grid, Row} from "react-flexbox-grid";
+import Nav from "./nav";
+import Button from './partials/button';
 
-const Header = ({state,data}) => {
-    // const data = state.source.get(state.router.link);
+const Header = ({state, data}) => {
     const post = state.source[data.type][data.id];
-    console.log(post)
+
     let name;
     if (post.slug === 'anne-goovaerts') {
         name = 'Anne Goovaerts'
@@ -21,12 +19,15 @@ const Header = ({state,data}) => {
             <Grid className={"mobile-wrap"} fluid>
                 <Row className={""}>
                     <Col className={""} xs={12}>
-                        <section className={"header"}>
+                        <Section>
                             <Nav/>
-                            <h1>{name}</h1>
+                            <Title>{name}</Title>
                             <p>{post.acf.header_intro}</p>
-                            <button>{post.acf.header_button}</button>
-                        </section>
+                            <div className={"button-wrapper"}>
+                                <Button style={"primary"} text={'lees meer'} url={"services"} type={"anchor"}/>
+                                <Button style={"secondary"} text={'Herstellingen'} url={"services"} type={"anchor"}/>
+                            </div>
+                        </Section>
                     </Col>
                 </Row>
             </Grid>
@@ -34,60 +35,38 @@ const Header = ({state,data}) => {
     ) : null;
 };
 
-
-// Connect the Header component to get access to the `state` in it's `props`
 export default connect(Header);
 
 const Container = styled.div`
-  background-color: #192eb4;
+  background-color: #798B6B;
 
-  section.header {
+`;
+
+const Section = styled.section`
+  padding: 0 0 5rem 0;
+
+  .button-wrapper {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 5rem 2rem;
+    gap: 20px;
+  }
+
+  p {
     color: white;
+    font-size: 1.5rem;
+    width: 100%;
+    line-height: 2.3rem;
+    font-weight: 300;
 
-    h1 {
-      font-size: 9rem;
-      margin: 4rem 0 1rem 0;
-      font-family: 'Marcellus', serif;
-      font-weight: normal;
-    }
-
-    button {
-      width: 200px;
-      background-color: white;
-      border: none;
-      padding: 1rem 0;
-      border-radius: 100px;
-
-      &:hover {
-        background-color: pink;
-      }
+    @media (min-width: 992px) {
+      width: 60%;
     }
   }
 `;
 
-const Section = styled.section`
-  width: 100%;
-  max-width: 1440px;
-  background-color: pink;
-  padding: 2rem;
-  position: relative;
-`;
-
 const Title = styled.h1`
-  //margin: 0;
-  //margin-bottom: 16px;
-  //background-color: red;
-`;
-
-const Description = styled.h4`
-  margin: 0;
-  color: rgba(255, 255, 255, 0.7);
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
+  font-size: 8rem;
+  margin: 4rem 0 1rem 0;
+  font-family: 'Marcellus', serif;
+  font-weight: normal;
+  color: white;
 `;

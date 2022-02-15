@@ -11,6 +11,7 @@ import flexboxgrid from "../helpers/flexboxgrid.min.css";
 import Anne from "./Pages/Anne";
 import Toni from "./Pages/Toni";
 import Selection from "./Pages/Selection";
+// import swiperCss from 'swiper/swiper.min.css';
 
 
 /**
@@ -39,6 +40,7 @@ const Theme = ({state}) => {
       Not classes here because we use CSS-in-JS. Only global HTML tags. */}
             <Global styles={css(flexboxgrid)}/>
             <Global styles={globalStyles}/>
+            {/*<Global styles={swiperCss}/>*/}
             {/*<Global styles={css(body)}/>*/}
 
             {/*/!* Add the header of the site. *!/*/}
@@ -67,6 +69,7 @@ export default connect(Theme);
 
 const globalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
   
   html {
     scroll-behavior: smooth;

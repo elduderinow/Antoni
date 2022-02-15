@@ -66,12 +66,6 @@ const Anne = ({state, actions, libraries}) => {
                     </Wrapper>
                 </Col>
             </Row>
-
-            {/*{data.isAttachment ? (*/}
-            {/*    <div dangerouslySetInnerHTML={{__html: post.description.rendered}}/>*/}
-            {/*) : (*/}
-            {/*    <Html2React html={post.content.rendered}/>*/}
-            {/*)}*/}
         </Grid>
     ) : null;
 };

@@ -24,26 +24,48 @@ const Nav = ({state}) => {
     return (
         <Navigation>
             {/* If link url is the current page, add `aria-current` for a11y */}
-            <Link link={otherLink}>
-                {otherName}
-            </Link>
-            <a className={"link"} onClick={() => goAnchor('services')}>services</a>
-            <a className={"link"} onClick={() => goAnchor('services')}>Info</a>
-            <a className={"link"} onClick={() => goAnchor('services')}>Webshop</a>
-            <a className={"link"} onClick={() => goAnchor('services')}>Contact</a>
+            <ul>
+                <li>
+                    <Link link={otherLink}>
+                        {otherName}
+                    </Link>
+                </li>
+                <li>
+                    <a className={"link"} onClick={() => goAnchor('services')}>services</a>
+                </li>
+                <li>
+                    <a className={"link"} onClick={() => goAnchor('services')}>services</a>
+                </li>
+                <li>
+                    <a className={"link"} onClick={() => goAnchor('services')}>services</a>
+                </li>
+                <li>
+                    <a className={"link"} onClick={() => goAnchor('services')}>services</a>
+                </li>
+            </ul>
         </Navigation>
     )
 }
 
 export default connect(Nav);
-// export default Nav;
 
 const Navigation = styled.nav`
-  display: inline;
   text-align: right;
+  width: 100%;
+  margin-top: 4rem;
+  
+  ul {
+    padding-left: 0;
+    li {
+      display: inline-block;
+      list-style-type: none;
+    }
+  }
   a {
     margin-left: 2rem;
     cursor: pointer;
+    color: white;
+    padding-bottom: 0.5rem;
     
     &:hover {
       border-bottom: 1px solid white;
