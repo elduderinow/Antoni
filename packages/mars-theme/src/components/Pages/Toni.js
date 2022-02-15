@@ -51,8 +51,8 @@ const Toni = ({state, actions, libraries}) => {
                 <Row>
                     <Col xs={12} md={6}>
                         <section id={"services"} className={"intro"}>
-                            <h1>Onze Services</h1>
-                            <Image className={"intro-image"} src={post.acf.intro_image}/>
+                            <h1>Onze Services test</h1>
+                            {/*<Image className={"intro-image"} src={post.acf.intro_image}/>*/}
                         </section>
                     </Col>
                     <Col xs={12} md={6}>
